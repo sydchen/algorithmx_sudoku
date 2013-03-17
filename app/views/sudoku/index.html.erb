@@ -1,0 +1,15 @@
+<div id="sudoku">
+  <table class="sudoku-grids">
+    <tbody>
+    <% for row in 1..9 %>
+      <tr>
+      <% for col in 1..9 %>
+        <td class="grid cr<%= "#{row}#{col}" %>"></td> 
+      
+      <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
