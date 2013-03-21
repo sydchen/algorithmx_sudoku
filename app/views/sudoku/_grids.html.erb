@@ -1,7 +1,7 @@
 <% for row in grids %>
   <tr>
   <% for col in row %>
-        <td class="grid cr<%= "#{row}#{col}" %>"><%= col %></td> 
+        <td class="grid cr<%= "#{row}#{col}" %>"><%= col if col > 0 %></td> 
   <% end %>
   </tr>
 <% end %>
