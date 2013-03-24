@@ -13,9 +13,15 @@ table.sudoku-grids tr td {
   border:#333 1px solid;
 }
 
+table.sudoku-grids tr td.focus {
+  background-color: #FFFFCC
+}
+
 td.grid {
   text-align:center;
   width: 50px;
   height: 50px;
   font-size: 24px;
 }
+
+

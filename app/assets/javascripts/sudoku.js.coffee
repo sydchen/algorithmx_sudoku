@@ -17,3 +17,12 @@ $ ->
       $(tr).children('td').each (j, element) ->
         $(element).text(grids[i][j])
 
+  $('#origin-sudoku-grids tr td').click ->
+    $('#origin-sudoku-grids tr td.focus').removeClass('focus')
+    $(@).addClass('focus')
+
+  $('body').keypress (e) ->
+    if e.keyCode >= 48 && e.keyCode <= 57
+      if ($('#origin-sudoku-grids tr td.focus').length > 0)
+        $('#origin-sudoku-grids tr td.focus').text(String.fromCharCode(e.keyCode)) 
+
