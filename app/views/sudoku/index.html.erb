@@ -1,19 +1,22 @@
 <div id="sudoku">
-  <table id="origin-sudoku-grids" class="sudoku-grids">
-    <tbody>
-    <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
-    </tbody>
-  </table>
-
-  <br/>
-  <button id="solve-sudoku" type="button">Start</button>
-  <br/>
-  <br/>
-
-  <table id="solved-sudoku-grids" class="sudoku-grids">
-    <tbody>
-    <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
-    </tbody>
-  </table>
+  <div class="content">
+    <div>
+      <table id="origin-sudoku-grids" class="sudoku-grids">
+        <tbody>
+        <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button id="solve-sudoku" type="button">Solve</button>
+    </div>
+  </div>
+  <div class="content2">
+    <table id="solved-sudoku-grids" class="sudoku-grids">
+      <tbody>
+      <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
