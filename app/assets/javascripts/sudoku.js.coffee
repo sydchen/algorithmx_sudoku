@@ -38,20 +38,21 @@ $ ->
             check_column(i, j, number, grids) ||
             check_block(i, j, number, grids)
         if conclict
-          td_order = (i * 9) + j
-          $($('#origin-sudoku-grids tr td')[td_order]).addClass('conflict')
+          render_conflict_grid(i, j)
           return false
 
 
   check_row = (row, col, number, grids) ->
-    for grid_number, index in grids[row]
-      if grid_number == number && index != col
+    for j in [0..8]
+      if grids[row][j] == number && j != col
+        render_conflict_grid(row, j)
         return true
     return false
 
   check_column = (row, col, number, grids) ->
     for i in [0..8]
       if grids[i][col] == number && i != row
+        render_conflict_grid(i, col)
         return true
     return false
 
@@ -62,5 +63,12 @@ $ ->
     for i in [block_top..block_top + 2]
       for j in [block_left..block_left + 2]
         if grids[i][j] == number && i != row && j!= col
+          render_conflict_grid(i, j)
           return true
     return false
+
+  render_conflict_grid = (i, j) ->
+    td_order = (i * 9) + j
+    $($('#origin-sudoku-grids tr td')[td_order]).addClass('conflict')
+
+
