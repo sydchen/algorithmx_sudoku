@@ -1,5 +1,6 @@
 Sudoku::Application.routes.draw do
   match 'sudoku' => 'sudoku#index'
+  match 'sudoku/solution' => 'sudoku#solution'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

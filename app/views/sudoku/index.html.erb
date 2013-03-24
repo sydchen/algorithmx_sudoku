@@ -1,5 +1,16 @@
 <div id="sudoku">
-  <table class="sudoku-grids">
+  <table id="origin-sudoku-grids" class="sudoku-grids">
+    <tbody>
+    <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
+    </tbody>
+  </table>
+
+  <br/>
+  <button id="solve-sudoku" type="button">Start</button>
+  <br/>
+  <br/>
+
+  <table id="solved-sudoku-grids" class="sudoku-grids">
     <tbody>
     <%= render :partial => 'grids', :locals => {:grids => SAMPLE_INPUT} %>
     </tbody>

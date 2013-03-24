@@ -1,7 +1,7 @@
-<% for row in grids %>
+<% grids.each_with_index do |row, i| %>
   <tr>
-  <% for col in row %>
-        <td class="grid cr<%= "#{row}#{col}" %>"><%= col if col > 0 %></td> 
+  <% row.each_with_index do |col, j| %>
+        <td class="grid cr<%= "#{i}#{j}" %>"><%= col if col > 0 %></td>
   <% end %>
   </tr>
 <% end %>
