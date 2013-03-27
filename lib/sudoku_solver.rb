@@ -37,8 +37,8 @@ module SudokuSolver
   end
 
   def solve_sudoku(grids = {})
-    sudoku_table = grids.map do |row|      
-      row[1].map(&:to_i) 
+    sudoku_table = grids.map do |row|
+      row[1].map(&:to_i)
     end
 
     if sudoku_table.empty?
@@ -46,7 +46,6 @@ module SudokuSolver
         f.each_line {|line| sudoku_table << line.strip.split(',').map(&:to_i) }
       end
     end
-    Rails.logger.debug sudoku_table
 
     size = 9
     constrains = Array(0..size-1).product(Array(0..size-1)).map { |p| ['rc', p] } +
@@ -74,12 +73,8 @@ module SudokuSolver
       for r,c,n in solution do
         sudoku_table[r][c] = n
       end
+      sudoku_table
     end
-    Rails.logger.debug "solution"
-    Rails.logger.debug sudoku_table
-    sudoku_table
   end
 end
 
-#solve_exact_cover
-#solve_sudoku
