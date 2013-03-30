@@ -10,22 +10,28 @@ $ ->
       type: 'POST'
       data: { 'grids': grids }
       success: (data, textStatus, jqXHR) ->
-        render(data)
+        if data
+          render(data)
+        else
+          alert('These is no solution')
 
   $('#origin-sudoku-grids tr td').click ->
     $('#origin-sudoku-grids tr td.focus').removeClass('focus')
     $(@).addClass('focus')
 
-  $('body').keypress (e) ->
+  $('body').on 'keydown', (e) ->
     if e.keyCode >= 48 && e.keyCode <= 57
       if ($('#origin-sudoku-grids tr td.focus').length > 0)
         $('#origin-sudoku-grids tr td.focus').text(String.fromCharCode(e.keyCode))
+    else if e.keyCode == 8
+      if ($('#origin-sudoku-grids tr td.focus').length > 0)
+        $('#origin-sudoku-grids tr td.focus').text("")
+      e.preventDefault()
 
   render = (grids) ->
     $('#solved-sudoku-grids tr').each (i, tr) ->
-      $(tr).children('td').each (j, element) ->
-        $(element).text(grids[i][j])
-
+      $(tr).children('td').each (j, cell) ->
+        $(cell).text(grids[i][j])
 
   check_grids = (grids) ->
     $('#origin-sudoku-grids tr td').removeClass('conflict')
@@ -40,7 +46,6 @@ $ ->
         if conclict
           render_conflict_grid(i, j)
           return false
-
 
   check_row = (row, col, number, grids) ->
     for j in [0..8]
@@ -70,5 +75,4 @@ $ ->
   render_conflict_grid = (i, j) ->
     td_order = (i * 9) + j
     $($('#origin-sudoku-grids tr td')[td_order]).addClass('conflict')
-
 
