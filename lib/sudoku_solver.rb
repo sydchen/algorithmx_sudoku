@@ -1,8 +1,6 @@
-# $:.unshift File.dirname(__FILE__)
-# require 'exact_cover'
-
 module SudokuSolver
   include ExactCover
+
   def prepare(constrains, y)
     x = {}
     y.values.flatten(1).uniq.sort.each {|c| x[c] = [] }
