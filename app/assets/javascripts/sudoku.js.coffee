@@ -4,7 +4,9 @@ $ ->
     $('#origin-sudoku-grids tr').each (index, tr) ->
       grids[index] = ($(item).text() for item in $(tr).children('td'))
 
-    check_grids(grids)
+    unless check_grids(grids)
+      alert("Please remove conflicted cells")
+      return
 
     $.ajax '/sudoku/solution',
       type: 'POST'
@@ -46,6 +48,7 @@ $ ->
         if conclict
           render_conflict_grid(i, j)
           return false
+    return true
 
   check_row = (row, col, number, grids) ->
     for j in [0..8]
