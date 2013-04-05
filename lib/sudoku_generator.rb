@@ -1,8 +1,11 @@
+
+
+
 def random_grids
   puzzle = [0] * 81
-  a = (1..9).sort_by{rand}
-  b = (1..9).sort_by{rand}
-  c = (1..9).sort_by{rand}
+  a = (1..9).to_a.sample(9)
+  b = (1..9).to_a.sample(9)
+  c = (1..9).to_a.sample(9)
 
 # Completely fill in the upper-left 3x3 section.
   puzzle[0..2] = a[0..2]
@@ -19,12 +22,21 @@ def random_grids
   puzzle[69..71] = c[3..5]
   puzzle[78..80] = c[6..8]
 
-  possible_puzzle =  puzzle.each_slice(9).to_a
+  puzzle
+end
 
-  s =  Hash[(0..a.length - 1).zip(possible_puzzle)]
-  solution_puzzle = solve_sudoku(s)
-  if solution_puzzle
-    (0..80).to_a.sample(56).each { |index| solution_puzzle[index] = 0 }
-    return solution_puzzle.each_slice(9).to_a
+def generate_sudoko_grids
+  while(true)
+    puzzle = random_grids
+    possible_puzzle = puzzle.each_slice(9).to_a
+
+    s =  Hash[(0..possible_puzzle.length - 1).zip(possible_puzzle)]
+    Rails.logger.debug s
+    solution_puzzle = solve_sudoku(s)
+    if solution_puzzle
+      solution_puzzle.flatten!
+      (0..80).to_a.sample(56).each { |index| solution_puzzle[index] = 0 }
+      return solution_puzzle.each_slice(9).to_a
+    end
   end
 end
