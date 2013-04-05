@@ -1,7 +1,8 @@
+require 'sudoku_generator'
 class SudokuController < ApplicationController
   include SudokuSolver
   def index
-
+    @random = random_grids
   end
 
   def solution

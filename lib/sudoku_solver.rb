@@ -66,13 +66,14 @@ module SudokuSolver
       end
     end
 
-    solution = []
-    if solve(x, y, solution)
-      for r,c,n in solution do
+    solutions = []
+    solve(x, y, []) do |solution|
+      for r, c, n in solution do
         sudoku_table[r][c] = n
       end
-      sudoku_table
+      solutions << sudoku_table
     end
+    solutions[0] if solutions.length
   end
 end
 
